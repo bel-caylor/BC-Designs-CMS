@@ -1,0 +1,36 @@
+@import 'palette.scss';
+rrem
+/* Navigation Styles*/
+
+nav {
+  font-size: 1rem;
+}
+
+.navbar__active {
+  background-color: $color4;
+  font-size: 1.6rem;
+}
+
+.navbar__menu ul {
+    // padding-left: 1rem;
+    margin: 0;
+    text-align: right;
+}
+
+.navbar__menu li {
+    padding: 0 5px 0 5px;
+}
+
+.navbar__menu .menu__link {
+    display: inline-block;
+    padding: 1rem, 0, 1rem, 0;
+    text-decoration: none;
+    color: #000;
+    // font-size: 1em;
+}
+
+.navbar__menu .menu__link:hover {
+    background: #333;
+    color: #fff;
+    transition: ease 0.3s all;
+}

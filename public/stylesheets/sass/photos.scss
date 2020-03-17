@@ -1,0 +1,38 @@
+.gallery_container {
+
+}
+
+.gallery_detail {
+  padding-top: 5vh;
+}
+
+.photoRow {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.photoCol {
+  flex: 23%;
+  max-width: 23%;
+  padding: 0 4px;
+  img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .photoCol {
+    flex: 47%;
+    max-width: 47%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .photoCol {
+    flex: 98%;
+    max-width: 98%;
+  }
+}

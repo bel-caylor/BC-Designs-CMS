@@ -1,0 +1,349 @@
+/* Coolors Exported Palette - coolors.co/190b28-444554-e3f5fc-f7c5ad-a57f60 */
+/* HSL */
+/* RGB */
+/* Background Circles */
+/* Note that background circles are created with psuedo elements before and after */
+/* Circles appear to be random do to use of :nth-of-type psuedo class */
+@import url("https://fonts.googleapis.com/css?family=Alegreya|Amaranth:700&display=swap");
+section:nth-of-type(odd) .landing__container::before {
+  content: '';
+  background: rgba(255, 255, 255, 0.187);
+  position: absolute;
+  top: 1.5em;
+  right: 2em;
+  z-index: -5;
+  width: 20vh;
+  height: 20vh;
+  opacity: 0.5;
+  transition: ease 0.5s all; }
+
+section:nth-of-type(even) .landing__container::before {
+  content: '';
+  background: white;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+  position: absolute;
+  z-index: -5;
+  width: 15vh;
+  height: 15vh;
+  opacity: 0.5;
+  transition: ease 0.5s all; }
+
+section:nth-of-type(3n) .landing__container::after {
+  content: '';
+  background: white;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+  position: absolute;
+  right: 5vw;
+  bottom: 5em;
+  z-index: -5;
+  width: 10vh;
+  height: 10vh;
+  opacity: 0.5;
+  transition: ease 0.5s all; }
+
+section:nth-of-type(3n + 1) .landing__container::after {
+  content: '';
+  background: white;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+  position: absolute;
+  right: 20vw;
+  bottom: 1em;
+  z-index: -5;
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  opacity: 0.5;
+  transition: ease 0.5s all; }
+
+/* ---- Theme State Rules ---- */
+/* Section Active Styles */
+/* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
+section.your-active-class {
+  /* background: rgb(0, 0, 0); */
+  /* background: black; */
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.2) 100%); }
+
+section.your-active-class .landing__container::before {
+  opacity: .4;
+  animation: rotate 10s linear 0s infinite forwards; }
+
+section.your-active-class .landing__container::after {
+  opacity: .4;
+  animation: rotate 7s linear 1s infinite forwards reverse; }
+
+/* Section Active Styles Keyframe Animations */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) translate(-2em) rotate(0deg); }
+  to {
+    transform: rotate(360deg) translate(-2em) rotate(-360deg); } }
+.gallery_detail {
+  padding-top: 5vh; }
+
+.photoRow {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px; }
+
+.photoCol {
+  flex: 23%;
+  max-width: 23%;
+  padding: 0 4px; }
+  .photoCol img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%; }
+
+@media screen and (max-width: 600px) {
+  .photoCol {
+    flex: 47%;
+    max-width: 47%; } }
+@media screen and (max-width: 400px) {
+  .photoCol {
+    flex: 98%;
+    max-width: 98%; } }
+/* Coolors Exported Palette - coolors.co/190b28-444554-e3f5fc-f7c5ad-a57f60 */
+/* HSL */
+/* RGB */
+/* ---- Theme Rules ---- */
+/* Landing Container Styles */
+.landing__container {
+  padding: 3rem 1rem 0 1rem;
+  text-align: right; }
+
+section:nth-of-type(even) .landing__container {
+  margin-right: 0;
+  margin-left: auto;
+  text-align: left; }
+
+.project_container:last-of-type {
+  border-bottom: 0px; }
+
+.project_container {
+  display: grid;
+  padding: 1rem;
+  border-bottom: 2px ridge #444554;
+  text-align: left;
+  vertical-align: bottom; }
+  .project_container .project_photo {
+    display: grid;
+    grid-area: photo; }
+  .project_container .project_detail {
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    grid-area: detail; }
+  .project_container p {
+    font-size: 0.7rem;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em; }
+  .project_container .no_background {
+    background-color: transparent;
+    width: 70%;
+    padding-left: 30%; }
+
+.project_container .link_hover img:hover {
+  transform: rotate(-2deg); }
+
+.project_container:nth-of-type(even) h3, .project_container:nth-of-type(even) h4, .project_container:nth-of-type(even) h5 {
+  text-align: right; }
+.project_container:nth-of-type(even) li {
+  text-align: right; }
+.project_container:nth-of-type(even) .link_hover img:hover {
+  transform: rotate(2deg); }
+
+@media only screen and (max-width: 450px) {
+  .project_photo {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh; }
+    .project_photo img {
+      width: 70vw;
+      padding: 5px;
+      background-color: white; }
+
+  .project_container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "photo" "detail"; } }
+@media only screen and (min-width: 451px) {
+  .project_container img {
+    width: 30vw;
+    padding: 5px;
+    margin-left: -20px;
+    margin-right: 30px;
+    background-color: white; }
+
+  .project_container:nth-of-type(odd) {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "photo detail"; }
+
+  .project_container:nth-of-type(even) {
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "detail photo"; }
+    .project_container:nth-of-type(even) img {
+      margin-left: 30px;
+      margin-right: -20px; }
+      .project_container:nth-of-type(even) img :hover {
+        transform: rotate(2deg); } }
+/* Coolors Exported Palette - coolors.co/190b28-444554-e3f5fc-f7c5ad-a57f60 */
+/* HSL */
+/* RGB */
+rrem
+nav {
+  font-size: 1rem; }
+
+.navbar__active {
+  background-color: #f7c5ad;
+  font-size: 1.6rem; }
+
+.navbar__menu ul {
+  margin: 0;
+  text-align: right; }
+
+.navbar__menu li {
+  padding: 0 5px 0 5px; }
+
+.navbar__menu .menu__link {
+  display: inline-block;
+  padding: 1rem, 0, 1rem, 0;
+  text-decoration: none;
+  color: #000; }
+
+.navbar__menu .menu__link:hover {
+  background: #333;
+  color: #fff;
+  transition: ease 0.3s all; }
+
+@media only screen and (max-width: 450px) {
+  html {
+    font-size: 3.7vw; } }
+@media (min-width: 451px) and (max-width: 600px) {
+  html {
+    font-size: 3vw; } }
+@media only screen and (min-width: 601px) {
+  html {
+    font-size: 2.5vw; } }
+/* ---- Base Rules ---- */
+html {
+  scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(45deg, #190b28 0%, #444554 100%);
+  margin: 0;
+  font-family: "Alegreya", serif;
+  color: #190b28; }
+
+/* Typeography General*/
+h2, h3, h4, h5 {
+  color: #e3f5fc; }
+
+h1 {
+  color: #190b28;
+  font-family: "Amaranth", sans-serif;
+  font-size: 2rem;
+  margin: 10px; }
+
+h2 {
+  font-family: "Amaranth", sans-serif;
+  border-bottom: 1px solid #f7c5ad;
+  font-size: 2rem; }
+
+h3 {
+  font-family: "Amaranth", sans-serif;
+  display: block;
+  font-size: 1.5rem;
+  margin: 0;
+  color: #f7c5ad;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  vertical-align: bottom; }
+
+h4 {
+  font-family: "Amaranth", sans-serif;
+  font-size: 1.2rem;
+  color: #f7c5ad;
+  font-style: italic;
+  font-family: fText;
+  margin: 0; }
+
+h5 {
+  padding-top: 0.2rem;
+  font-family: "Alegreya", serif;
+  color: #f7c5ad;
+  font-size: 0.9rem;
+  font-family: fText;
+  margin: 0; }
+
+p {
+  font-size: 0.8rem;
+  line-height: 1rem;
+  color: #eee;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto; }
+
+ul {
+  padding-inline-start: 0; }
+
+li {
+  font-size: 0.8rem;
+  color: #e3f5fc;
+  padding-bottom: 0.5rem;
+  list-style-type: none; }
+
+.tightLines {
+  padding-bottom: 0.4rem; }
+
+.contact p {
+  line-height: 0.5rem; }
+
+a {
+  color: #f7c5ad;
+  text-decoration: none;
+  font-weight: bold; }
+
+a:hover {
+  color: #a57f60; }
+
+a:visited {
+  font-weight: normal; }
+
+img {
+  transition: 0.2s ease-in-out; }
+
+.link_hover img:hover {
+  opacity: 0.7;
+  transform: rotate(2deg); }
+
+/* ---- Layout Rules ---- */
+main {
+  margin-top: 1.5rem; }
+
+.main-hero {
+  padding-top: 3rem; }
+
+section {
+  position: relative; }
+
+/* ---- Module Rules ---- */
+/* Header Styles */
+.page__header {
+  background: #e3f5fc;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+  color: black; }
+
+/* Footer Styles */
+.page__footer {
+  background: #190b28;
+  padding: 0.1rem;
+  color: #fff;
+  text-align: right; }
+
+.page__footer p {
+  color: #fff; }
+
+/*# sourceMappingURL=main.css.map */
