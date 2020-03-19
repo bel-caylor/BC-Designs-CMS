@@ -337,13 +337,13 @@ section {
   color: black; }
 
 /* Footer Styles */
-.page__footer {
+.page_footer {
   background: #190b28;
   padding: 0.1rem;
   color: #fff;
   text-align: right; }
 
-.page__footer p {
+.page_footer p {
   color: #fff; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,4 +1,4 @@
-<footer>
+<footer class="page_footer">
   &copy; <?php echo date('Y') . ' ' .$Company; ?>
 </footer>
 <script src="index.js">

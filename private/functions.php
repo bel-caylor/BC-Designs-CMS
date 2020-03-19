@@ -8,4 +8,10 @@ function urlFor($path) {
   return WWW_ROOT . $path;
 };
 
+function get_article($path) {
+  if (file_exists($path) == 1) {
+    return file_get_contents($path);
+  }
+}
+
  ?>

@@ -39,20 +39,22 @@
         $loop = 1;
 // Loop Throuhg Sections
         while($section = mysqli_fetch_assoc($sections)) {
-          global $main;
 // Section
+          // Set section1 to 'your-active-class'
           if ($loop == 1) {
             $main .= '<section id="section' . $section['ord'] . '" data-nav=' . $section['section'] . ' class="your-active-class">';
             $loop = 2;
           }else {
             $main .= '<section id="section' . $section['ord'] . '" data-nav=' . $section['section'] . '>';
           }
+
           $main .= '<div class="landing__container">';
           $main .= '<div class=flyingH2><h2>' . $section['section'] . '</h2></div>';
+          $main .= get_article(SHARED_PATH . '/articles/' . $section['section'] . '0.html');
+
   // Loop Through SubSections
           $subSections = query_db("sub_sections", "ord", "ASC", "section_id", $section['ord']);
           while($subSection = mysqli_fetch_assoc($subSections)) {
-            // global $main;
             $main .= '<div class="project_container">';
             // Photo
                 $main .= '<div class="project_photo link_hover">';
@@ -75,10 +77,7 @@
                   $main .= '<h5>' . $subSection['heading_3'] . '</h5>';
                 }
             //Article
-                $articlePATH = SHARED_PATH . '/articles/' . $section['section'] . $subSection['article'];
-                if (file_exists($articlePATH) == 1) {
-                  $main .= file_get_contents($articlePATH);
-                }
+                $main .= get_article(SHARED_PATH . '/articles/' . $section['section'] . $subSection['article']);
                 $main .= '</div>';  //End Detail
               $main .= '</div>';  //project container
           }
