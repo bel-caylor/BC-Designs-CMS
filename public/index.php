@@ -57,16 +57,18 @@
           while($subSection = mysqli_fetch_assoc($subSections)) {
             $main .= '<div class="project_container">';
             // Photo
-                $main .= '<div class="project_photo link_hover">';
-                if (substr($subSection['photo'],0,4) == "http") {
-                  $main .= '<a href="' . $subSection['photo'] . '"  target="_blank">';
-                  $main .= '<img src="' . $subSection['photo'] . '" alt="' . $subSection['heading_1'] . '"></a>';
+              if ($subSection['photo'] != NULL) {
+                  $main .= '<div class="project_photo link_hover">';
+                  if (substr($subSection['photo'],0,4) == "http") {
+                    $main .= '<a href="' . $subSection['photo'] . '"  target="_blank">';
+                    $main .= '<img src="' . $subSection['photo'] . '" alt="' . $subSection['heading_1'] . '"></a>';
 
-                }else {
-                  $main .= '<a href="images\\' . $subSection['photo'] . '"  target="_blank">';
-                  $main .= '<img src="images\\' . $subSection['photo'] . '" alt="' . $subSection['heading_1'] . '"></a>';
+                  }else {
+                    $main .= '<a href="images\\' . $subSection['photo'] . '"  target="_blank">';
+                    $main .= '<img src="images\\' . $subSection['photo'] . '" alt="' . $subSection['heading_1'] . '"></a>';
+                  }
+                  $main .= '</div>';
                 }
-                $main .= '</div>';
             //Detail
                 $main .= '<div class="project_detail">';
                 $main .= '<h3>' . $subSection['heading_1'] . '</h3>';
