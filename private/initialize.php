@@ -5,6 +5,11 @@
   define("PUBLIC_PATH", PROJECT_PATH . '/public');
   define("SHARED_PATH", PRIVATE_PATH . '/shared');
 
-  require_once('functions.php');
+  define("WWW_ROOT", '/~BC-Designs-CMS/public');
 
+  require_once('functions.php');
+  require_once('database.php');
+  require_once('query_functions.php');
+
+  $db = dbConnect();
  ?>
