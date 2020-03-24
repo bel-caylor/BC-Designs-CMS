@@ -1,10 +1,10 @@
 @import 'palette.scss';
-@import "flyingText.scss";
 @import "circles.scss";
 @import "photos.scss";
 @import "theme.scss";
 @import "nav.scss";
 @import "media.scss";
+@import "toolTip.scss";
 @import url('https://fonts.googleapis.com/css?family=Alegreya|Amaranth:700&display=swap');
 $fHeader: 'Amaranth', sans-serif;
 $fText: 'Alegreya', serif;
@@ -23,14 +23,20 @@ body {
 
 }
 
-
 /* Typeography General*/
-.banner {
-
-}
 
 h2, h3, h4, h5 {
     color: $color3;
+}
+
+.h2 {
+  width: auto;
+}
+
+.h2, .h3, .h4, .h5 {
+    color: $color3;
+    background: none;
+    border-width: 0;
 }
 
 h1 {
@@ -40,10 +46,12 @@ h1 {
     margin: 10px;
 }
 
-h2 {
+h2, .h2 {
     font-family: $fHeader;
-    border-bottom: 1px solid $color4;
+    // border-bottom: 1px solid $color4;
     font-size: 2rem;
+    // padding-right 10px;
+    // width: 90%;
     }
 
 h3 {
@@ -51,6 +59,7 @@ h3 {
     display: block;
     font-size: 1.5rem;
     margin: 0;
+    // padding:  0 1rem 0 1rem;
     color: $color4;
     margin-block-start: 0;
     margin-block-end:0;
@@ -128,9 +137,76 @@ img {
   }
 }
 
+.btnEdit {
+  display: none;
+}
+
+.btnOK {
+  display: none;
+}
+
+.btnEdit:hover {
+  opacity: 0.7;
+}
+
+button {
+  // display: none;
+  background: none;
+  border-width: 0;
+}
+
+.btn {
+  height: auto;
+  max-width: 20px;
+  hspace: 1rem;
+  // vertical-align: middle;
+}
+
+#password {
+  background-color: white;
+  color: white;
+  display: inline;
+  border: 1px solid grey;
+  padding: 5px;
+  margin: 5px;
+  // text-align: left;
+}
+#password:hover {
+    background-color: #e3e3e3;
+}
+
+#saveFooter {
+  display: none;
+  text-align: left;
+  background-color: #f18282;
+  font-weight: bold;
+  color: black;
+  opacity: 0.95;
+  position: fixed;
+  height: 40px;
+  bottom: 0;
+  z-index: 5;
+  width: 100%;
+  padding-top: 5px;
+  padding-left: 30px;
+}
+
+#saveFooter button {
+
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 3px 3px 3px #66666678;
+  padding: 5px;
+  margin: 0px 10px 0px 10px;
+}
+#saveFooter button:hover {
+  background-color: #e3e3e3;
+}
+
+
 /* ---- Layout Rules ---- */
 main {
-    margin-top: 1.5rem;
+    margin-top: 3rem;
 }
 
 .main-hero {
@@ -151,6 +227,7 @@ section {
     background: $color3;
     position: fixed;
     top: 0;
+    // margin-right: 50px;
     width: 100%;
     z-index: 5;
     color: black;

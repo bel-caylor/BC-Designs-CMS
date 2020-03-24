@@ -107,14 +107,14 @@ section.your-active-class .landing__container::after {
 /* RGB */
 /* ---- Theme Rules ---- */
 /* Landing Container Styles */
+.section {
+  border-bottom: 1px solid #f7c5ad; }
+
 .landing__container {
   padding: 3rem 1rem 0 1rem;
-  text-align: right; }
-
-section:nth-of-type(even) .landing__container {
-  margin-right: 0;
+  width: 90%;
   margin-left: auto;
-  text-align: left; }
+  margin-right: auto; }
 
 .project_container:last-of-type {
   border-bottom: 0px; }
@@ -186,6 +186,10 @@ section:nth-of-type(even) .landing__container {
       margin-right: -20px; }
       .project_container:nth-of-type(even) img :hover {
         transform: rotate(2deg); } }
+.gallery_container {
+  margin-left: auto;
+  margin-right: auto; }
+
 /* Coolors Exported Palette - coolors.co/190b28-444554-e3f5fc-f7c5ad-a57f60 */
 /* HSL */
 /* RGB */
@@ -206,9 +210,12 @@ nav {
 
 .navbar__menu .menu__link {
   display: inline-block;
-  padding: 1rem, 0, 1rem, 0;
+  padding: 1rem, 0, 2rem, 0;
   text-decoration: none;
   color: #000; }
+
+.navbarBtn {
+  display: inline-block; }
 
 .navbar__menu .menu__link:hover {
   background: #333;
@@ -224,6 +231,33 @@ nav {
 @media only screen and (min-width: 601px) {
   html {
     font-size: 2.5vw; } }
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  padding-right: 5px;
+  /* If you want dots under the hoverable text */ }
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #444554;
+  color: #f7c5ad;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1; }
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible; }
+
 /* ---- Base Rules ---- */
 html {
   scroll-behavior: smooth; }
@@ -238,15 +272,22 @@ body {
 h2, h3, h4, h5 {
   color: #e3f5fc; }
 
+.h2 {
+  width: auto; }
+
+.h2, .h3, .h4, .h5 {
+  color: #e3f5fc;
+  background: none;
+  border-width: 0; }
+
 h1 {
   color: #190b28;
   font-family: "Amaranth", sans-serif;
   font-size: 2rem;
   margin: 10px; }
 
-h2 {
+h2, .h2 {
   font-family: "Amaranth", sans-serif;
-  border-bottom: 1px solid #f7c5ad;
   font-size: 2rem; }
 
 h3 {
@@ -316,9 +357,63 @@ img {
   opacity: 0.7;
   transform: rotate(2deg); }
 
+.btnEdit {
+  display: none; }
+
+.btnOK {
+  display: none; }
+
+.btnEdit:hover {
+  opacity: 0.7; }
+
+button {
+  background: none;
+  border-width: 0; }
+
+.btn {
+  height: auto;
+  max-width: 20px;
+  hspace: 1rem; }
+
+#password {
+  background-color: white;
+  color: white;
+  display: inline;
+  border: 1px solid grey;
+  padding: 5px;
+  margin: 5px; }
+
+#password:hover {
+  background-color: #e3e3e3; }
+
+#saveFooter {
+  display: none;
+  text-align: left;
+  background-color: #f18282;
+  font-weight: bold;
+  color: black;
+  opacity: 0.95;
+  position: fixed;
+  height: 40px;
+  bottom: 0;
+  z-index: 5;
+  width: 100%;
+  padding-top: 5px;
+  padding-left: 30px; }
+
+#saveFooter button {
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 3px 3px 3px #66666678;
+  padding: 5px;
+  margin: 0px 10px 0px 10px; }
+
+#saveFooter button:hover {
+  background-color: #e3e3e3; }
+
 /* ---- Layout Rules ---- */
 main {
-  margin-top: 1.5rem; }
+  margin-top: 3rem; }
 
 .main-hero {
   padding-top: 3rem; }

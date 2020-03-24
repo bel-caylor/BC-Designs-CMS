@@ -37,6 +37,8 @@
 */
 const sections = document.querySelectorAll('section');
 const navBar = document.querySelector('ul#navbar__list');
+const editSection = document.querySelectorAll('.btnEdit');
+const btnEdit = document.querySelector('#btnEdit');
 let activeClass = "section1";
 /**
  * End Global Variables
@@ -83,11 +85,38 @@ function changeActive(newSection) {
 
   //Add active class to new sections
   let addClass = document.getElementById(newSection);
-  addClass.classList.add("your-active-class");
-  let addClassNav = document.getElementById("S" + newSection.substring(7));
-  addClassNav.classList.add("navbar__active");
-  activeClass = newSection;
-}
+  if (addClass != null) {
+    addClass.classList.add("your-active-class");
+    let addClassNav = document.getElementById("S" + newSection.substring(7));
+    addClassNav.classList.add("navbar__active");
+    activeClass = newSection;
+  };
+
+};
+
+function clickEditBtn(id) {
+  document.getElementById('Sec' + id).readOnly = false;
+  document.getElementById('btnSection' + id).style.display = "none";
+  document.getElementById('btnOKSec' + id).style.display = "inline";
+};
+
+function clickOKBtn(id) {
+
+};
+
+function clickSaveChanges() {
+
+};
+
+function clickCancelChanges() {
+  location.reload(true);
+};
+
+function clickNavBarBtn() {
+  let btns = document.querySelectorAll('.btnEdit');
+  btns.forEach(btn => btn.style.display = "inline");
+  document.getElementById('saveFooter').style.display = "inline";
+};
 
 // Scroll to anchor ID using scrollTO event
 
@@ -102,7 +131,8 @@ function changeActive(newSection) {
 // navBar.insertAdjacentHTML('afterbegin', createNavBar());
 
 //Listen for click on navigation bar and change active class.
-navBar.addEventListener('click', function () {changeActive(event.target.dataset.id)});
+navBar.addEventListener('click', () =>  {changeActive(event.target.dataset.id)});
+// navBar.addEventListener('click', changeActive(event.target.dataset.id));
 
 //Listen for scroll event that puts a new Section in the viewport
-window.addEventListener('scroll', function() {sectionInVeiwport()});
+window.addEventListener('scroll', () => {sectionInVeiwport()});

@@ -17,6 +17,7 @@
         <ul id="navbar__list">
           <!-- Setup Navigation -->
           <?php
+            //Setup Sections on Nav Bar
             while($section = mysqli_fetch_assoc($sections)) {
               $nav = "<a href=\"#section" . $section['ord'] . "\">";
               $nav .= '<li id="S' . $section['ord'];
@@ -25,6 +26,10 @@
               $nav .= $section['section'] . '</li></a>';
               echo $nav;
             }
+            //Setup Edit and Setup on Nav bar
+              $nav = '<button onclick="clickNavBarBtn()"><div class="tooltip"><img id="btnEdit" class="btn navbarBtn menu__lin" src="images\button_edit.png" alt="Configuation" hspace="2"><span class="tooltiptext">Edit</span></div></button>';
+              $nav .= '<div class="tooltip"><img id="btnSetup" class="btn navbarBtn menu__lin" src="images\button_setup.png" alt="Configuation" hspace="2"><span class="tooltiptext">Config</span></div>';
+              echo $nav;
             mysqli_free_result($sections);
            ?>
 
@@ -48,7 +53,11 @@
           }
 
           $main .= '<div class="landing__container">';
-          $main .= '<div class=flyingH2><h2>' . $section['section'] . '</h2></div>';
+          // $main .= '<div class=flyingH2><h2>' . $section['section'] . '</h2></div>';
+          $main .= '<div class="section">';
+          $main .= '<button onclick="clickEditBtn(' . $section['id'] . ')"><img id="btnSection' . $section['id'] . '" class="btnEdit btn" src="images\button_edit.png" alt="Edit" hspace="2"></button>';
+          $main .= '<button onclick="clickOKBtn("section' . $section['id'] . '")"><img id="btnOKSec' . $section['id'] . '" class="btnOK btn" src="images\button_OK.png" alt="OK" hspace="2"></button>';
+          $main .= '<input type="text" id="Sec' . $section['ord'] . '" value="' . $section['section'] . '" class="h2" readonly></div>';
           $main .= get_article(SHARED_PATH . '/articles/' . $section['section'] . '0.html');
 
   // Loop Through SubSections

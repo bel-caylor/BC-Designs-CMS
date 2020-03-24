@@ -1,0 +1,89 @@
+/* Coolors Exported Palette - coolors.co/190b28-444554-e3f5fc-f7c5ad-a57f60 */
+/* HSL */
+/* RGB */
+/* ---- Theme Rules ---- */
+/* Landing Container Styles */
+.section {
+  border-bottom: 1px solid #f7c5ad; }
+
+.landing__container {
+  padding: 3rem 1rem 0 1rem;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto; }
+
+.project_container:last-of-type {
+  border-bottom: 0px; }
+
+.project_container {
+  display: grid;
+  padding: 1rem;
+  border-bottom: 2px ridge #444554;
+  text-align: left;
+  vertical-align: bottom; }
+  .project_container .project_photo {
+    display: grid;
+    grid-area: photo; }
+  .project_container .project_detail {
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    grid-area: detail; }
+  .project_container p {
+    font-size: 0.7rem;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em; }
+  .project_container .no_background {
+    background-color: transparent;
+    width: 70%;
+    padding-left: 30%; }
+
+.project_container .link_hover img:hover {
+  transform: rotate(-2deg); }
+
+.project_container:nth-of-type(even) h3, .project_container:nth-of-type(even) h4, .project_container:nth-of-type(even) h5 {
+  text-align: right; }
+.project_container:nth-of-type(even) li {
+  text-align: right; }
+.project_container:nth-of-type(even) .link_hover img:hover {
+  transform: rotate(2deg); }
+
+@media only screen and (max-width: 450px) {
+  .project_photo {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh; }
+    .project_photo img {
+      width: 70vw;
+      padding: 5px;
+      background-color: white; }
+
+  .project_container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "photo" "detail"; } }
+@media only screen and (min-width: 451px) {
+  .project_container img {
+    width: 30vw;
+    padding: 5px;
+    margin-left: -20px;
+    margin-right: 30px;
+    background-color: white; }
+
+  .project_container:nth-of-type(odd) {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "photo detail"; }
+
+  .project_container:nth-of-type(even) {
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "detail photo"; }
+    .project_container:nth-of-type(even) img {
+      margin-left: 30px;
+      margin-right: -20px; }
+      .project_container:nth-of-type(even) img :hover {
+        transform: rotate(2deg); } }
+.gallery_container {
+  margin-left: auto;
+  margin-right: auto; }
+
+/*# sourceMappingURL=theme.css.map */
