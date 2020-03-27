@@ -2,7 +2,7 @@
 
 <?php
   $name = "Belinda Caylor";
-  $sections = query_db("sections", "ord");
+  $sections = query_db("sections", "id");
  ?>
 
 <?php $Company = 'BC-Designs' ?>
@@ -19,16 +19,17 @@
           <?php
             //Setup Sections on Nav Bar
             while($section = mysqli_fetch_assoc($sections)) {
-              $nav = "<a href=\"#section" . $section['ord'] . "\">";
-              $nav .= '<li id="S' . $section['ord'];
+              $nav = "<a href=\"#section" . $section['id'] . "\">";
+              $nav .= '<li id="S' . $section['id'];
               $nav .= '" class="menu__link" data-id="section';
-              $nav .= $section['ord'] . '">';
+              $nav .= $section['id'] . '">';
               $nav .= $section['section'] . '</li></a>';
               echo $nav;
             }
             //Setup Edit and Setup on Nav bar
-              $nav = '<button onclick="clickNavBarBtn()"><div class="tooltip"><img id="btnEdit" class="btn navbarBtn menu__lin" src="images\button_edit.png" alt="Configuation" hspace="2"><span class="tooltiptext">Edit</span></div></button>';
-              $nav .= '<div class="tooltip"><img id="btnSetup" class="btn navbarBtn menu__lin" src="images\button_setup.png" alt="Configuation" hspace="2"><span class="tooltiptext">Config</span></div>';
+              $nav = '<button onclick="clickNavEditBtn()"><div class="tooltip"><img id="btnEdit" class="btn navbarBtn menu__lin" src="images\button_edit.png" alt="Configuation" hspace="2"><span class="tooltiptext">Edit</span></div></button>';
+              //Config button - Need database and program
+              // $nav .= '<div class="tooltip"><img id="btnSetup" class="btn navbarBtn menu__lin" src="images\button_setup.png" alt="Configuation" hspace="2"><span class="tooltiptext">Config</span></div>';
               echo $nav;
             mysqli_free_result($sections);
            ?>
@@ -39,29 +40,34 @@
 
     <main>
       <?php
-        $sections = query_db("sections", "ord");
+        $sections = query_db("sections", "id");
         $main = '';
         $loop = 1;
 // Loop Throuhg Sections
         while($section = mysqli_fetch_assoc($sections)) {
           // Set section1 to 'your-active-class'
           if ($loop == 1) {
-            $main .= '<section id="section' . $section['ord'] . '" data-nav=' . $section['section'] . ' class="your-active-class">';
+            $main .= '<section id="section' . $section['id'] . '" data-nav=' . $section['section'] . ' class="your-active-class">';
             $loop = 2;
           }else {
-            $main .= '<section id="section' . $section['ord'] . '" data-nav=' . $section['section'] . '>';
+            $main .= '<section id="section' . $section['id'] . '" data-nav=' . $section['section'] . '>';
           }
 
+          $sectionNum = strval($section['id'] . '.0');
           $main .= '<div class="landing__container">';
-          // $main .= '<div class=flyingH2><h2>' . $section['section'] . '</h2></div>';
           $main .= '<div class="section">';
-          $main .= '<button onclick="clickEditBtn(' . $section['id'] . ')"><img id="btnSection' . $section['id'] . '" class="btnEdit btn" src="images\button_edit.png" alt="Edit" hspace="2"></button>';
-          $main .= '<button onclick="clickOKBtn("section' . $section['id'] . '")"><img id="btnOKSec' . $section['id'] . '" class="btnOK btn" src="images\button_OK.png" alt="OK" hspace="2"></button>';
-          $main .= '<input type="text" id="Sec' . $section['ord'] . '" value="' . $section['section'] . '" class="h2" readonly></div>';
-          $main .= get_article(SHARED_PATH . '/articles/' . $section['section'] . '0.html');
+          //Edit Button
+            $main .= '<button onclick="clickEditBtn(`' . $sectionNum . '`, `Sec`)">';
+            $main .= '<img id="btnEditSec' . $sectionNum . '" class="btnEdit btn" src="images\button_edit.png" alt="Edit" hspace="2"></button>';
+          //OK Button
+            $main .= '<button onclick="clickOKBtn(`' . $sectionNum . '`, `Sec`)">';
+            $main .= '<img id="btnOKSec' . $sectionNum . '" class="btnOK btn" src="images\button_OK.png" alt="OK" hspace="2"></button>';
+          //Input Section Title
+            $main .= '<input type="text" id="Sec' . $sectionNum . '" value="' . $section['section'] . '" class="h2" maxlength="20" size="20" readonly></div>';
+            $main .= get_article(SHARED_PATH . '/articles/' . $section['section'] . '0.html');
 
   // Loop Through SubSections
-          $subSections = query_db("sub_sections", "ord", "ASC", "section_id", $section['ord']);
+          $subSections = query_db("sub_sections", "id", "ASC", "section_id", $section['id']);
           while($subSection = mysqli_fetch_assoc($subSections)) {
 
             if (substr($subSection['photo'],0,4) != "GRID") {
@@ -72,22 +78,32 @@
                     $main .= '<div class="project_photo link_hover">';
                     if (substr($subSection['photo'],0,4) == "http") {
                       $main .= '<a href="' . $subSection['photo'] . '"  target="_blank">';
-                      $main .= '<img src="' . $subSection['photo'] . '" alt="' . $subSection['heading_1'] . '"></a>';
+                      $main .= '<img src="' . $subSection['photo'] . '" class="photo" alt="' . $subSection['heading_1'] . '"></a>';
 
                     }else {
                       $main .= '<a href="images\\' . $subSection['photo'] . '"  target="_blank">';
-                      $main .= '<img src="images\\' . $subSection['photo'] . '" alt="' . $subSection['heading_1'] . '"></a>';
+                      $main .= '<img src="images\\' . $subSection['photo'] . '" class="photo" alt="' . $subSection['heading_1'] . '"></a>';
                     }
                     $main .= '</div>';
                   }
               //Detail
                   $main .= '<div class="project_detail">';
-                  $main .= '<h3>' . $subSection['heading_1'] . '</h3>';
+                  //Edit Button
+                    $sectionNum = $subSection['section_id'] . '.' . $subSection['id'];
+                    $main .= '<div><button onclick="clickEditBtn(' . $sectionNum . ', `Sub`)">';
+                    $main .= '<img id="btnEditSec' . $sectionNum . '" class="btnEdit btn" src="images\button_edit.png" alt="Edit" hspace="2"></button>';
+                  //OK Button
+                    $main .= '<button onclick="clickSubOKBtn(' . $sectionNum . ')">';
+                    $main .= '<img id="btnOKSec' . $sectionNum . '" class="btnOK btn" src="images\button_OK.png" alt="OK" hspace="2"></button></div>';
+                    $main .= '<input type="text" id="h3Sub' . $sectionNum . '" value="' . $subSection['heading_1'] . '" class="h3" maxlength="40" readonly>';
+                            // <h3 class="inline" id="h3Sub' . $sectionNum . '">' . $subSection['heading_1'] . '</h3>';
                   if ($subSection['heading_2'] != NULL) {
-                    $main .= '<h4>' . $subSection['heading_2'] . '</h4>';
+                    $main .= '<input type="text" id="h4Sub' . $sectionNum . '" value="' . $subSection['heading_2'] . '" class="h4" maxlength="40" readonly>';
+                    // $main .= '<h4 id="h4Sub' . $sectionNum . '">' . $subSection['heading_2'] . '</h4>';
                   }
                   if ($subSection['heading_3'] != NULL) {
-                    $main .= '<h5>' . $subSection['heading_3'] . '</h5>';
+                    $main .= '<input type="text" id="h5Sub' . $sectionNum . '" value="' . $subSection['heading_3'] . '" class="h5" maxlength="40" readonly>';
+                    // $main .= '<h5 id="h5Sub' . $sectionNum . '">' . $subSection['heading_3'] . '</h5>';
                   }
               //Article
                   $main .= get_article(SHARED_PATH . '/articles/' . $section['section'] . $subSection['article']);

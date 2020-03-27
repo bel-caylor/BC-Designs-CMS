@@ -1,35 +1,4 @@
-// import 'stylesheets/css/nav.scss'
-// import 'stylesheets/css/main.scss'
-// import 'stylesheets/css/palette.scss'
-// import 'stylesheets/css/theme.scss'
-// import 'stylesheets/css/circles.scss'
-// import 'stylesheets/css/flyingText.scss'
-// import 'stylesheets/css/photos.scss'
-// import 'stylesheets/css/media.scss'
-// import github from './html/image/github.png'
-// import linkedIn from './html/image/LinkedIn-Logo.png'
-// import bcPortfolio from './html/image/BCPortfolio.jpg'
-// import BCPartyDesigns from './html/image/BCPartyDesigns.jpg'
-// import TravelApp from './html/image/TravelApp.jpg'
-// import BCPaperDesigns from './html/image/BCPaperDesigns.jpg'
-// import Photo1 from './html/image/Photograph1.jpg'
-// import Photo2 from './html/image/Photograph2.jpeg'
-// import Photo3 from './html/image/Photograph3.jpg'
-// import Photo4 from './html/image/Photograph4.jpeg'
-// import Photo5 from './html/image/Photograph5.jpg'
-// import Photo6 from './html/image/Photograph6.jpg'
-// import Photo7 from './html/image/Photograph7.jpeg'
-// import Photo8 from './html/image/Photograph8.jpg'
-// import Photo9 from './html/image/Photograph9.jpg'
-// import Dig1 from './html/image/DigScrap1.png'
-// import Dig2 from './html/image/DigScrap2.jpeg'
-// import Dig3 from './html/image/DigScrap3.jpeg'
-// import Dig5 from './html/image/DigScrap5.jpeg'
-// import Dig6 from './html/image/DigScrap6.jpeg'
-// import Dig7 from './html/image/DigScrap7.jpeg'
-// import Dig8 from './html/image/DigScrap8.jpeg'
-// import Dig9 from './html/image/DigScrap9.jpeg'
-// import Udacity from './html/image/Udacity5.jpg'
+// import { validMinLength } from './js/validate.js';  NEED webpack
 
 /**
  * Define Global Variables
@@ -40,6 +9,12 @@ const navBar = document.querySelector('ul#navbar__list');
 const editSection = document.querySelectorAll('.btnEdit');
 const btnEdit = document.querySelector('#btnEdit');
 let activeClass = "section1";
+let objChanges = {
+section:[]
+// , subSection: []
+// , article: []
+};
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -56,6 +31,12 @@ function sectionInVeiwport() {
     }
   })};
 
+  function validMinLength($str, $minLength) {
+    if ($str.length > $minLength) {
+      return true;
+    };
+  };
+
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -63,16 +44,16 @@ function sectionInVeiwport() {
 */
 
 // build the nav
-function createNavBar() {
-  let navList = ""
-  sections.forEach(function(sections) {
-  let sectionNumber = sections.id.substring(7);
-  navList += "<a href=\"\#" + sections.id + "\">";
-  navList += "<li id=\"S" + sectionNumber + "\" class=\"menu__link\" data-id=\"" + sections.id + "\">";
-  navList += sections.dataset.nav + "</li></a>";}
-);
-  return navList;
-}
+// function createNavBar() {
+//   let navList = ""
+//   sections.forEach(function(sections) {
+//   let sectionNumber = sections.id.substring(7);
+//   navList += "<a href=\"\#" + sections.id + "\">";
+//   navList += "<li id=\"S" + sectionNumber + "\" class=\"menu__link\" data-id=\"" + sections.id + "\">";
+//   navList += sections.dataset.nav + "</li></a>";}
+// );
+//   return navList;
+// }
 
 
 // Add class 'active' to section when near top of viewport
@@ -94,15 +75,56 @@ function changeActive(newSection) {
 
 };
 
-function clickEditBtn(id) {
-  document.getElementById('Sec' + id).readOnly = false;
-  document.getElementById('btnSection' + id).style.display = "none";
-  document.getElementById('btnOKSec' + id).style.display = "inline";
+function clickNavEditBtn() {
+  let btns = document.querySelectorAll('.btnEdit');
+  btns.forEach(btn => btn.style.display = "inline");
+  document.getElementById('saveFooter').style.display = "inline";
+  document.getElementById('btnEdit').style.display = "none";
 };
 
-function clickOKBtn(id) {
-
+function clickEditBtn(id, type) {
+  if (type == "Sec") {
+    let inputBox = document.getElementById(type + id);
+    inputBox.readOnly = false;
+    inputBox.classList.add("inputEdit")
+  }else {
+    let h3Box = document.getElementById("h3" + type + id);
+    h3Box.readOnly = false;
+    h3Box.classList.add("inputEdit");
+    if (document.getElementById("h4"  + type + id) !== null) {
+      let h4Box = document.getElementById("h4" + type + id);
+      h4Box.readOnly = false;
+      h4Box.classList.add("inputEdit");
+    };
+    if (document.getElementById("h5"  + type + id) !== null) {
+      let h4Box = document.getElementById("h5" + type + id);
+      h4Box.readOnly = false;
+      h4Box.classList.add("inputEdit");
+    }
+  }
+  document.getElementById("btnEditSec" + id).style.display = "none";
+  document.getElementById("btnOKSec" + id).style.display = "inline";
 };
+
+function clickOKBtn(id, type) {
+  console.log(id);
+  newSection = document.getElementById(type + id).value
+  if (validMinLength(newSection, 2) !== true) {
+    alert("Please enter a value larger than 2 characters.")
+    return;
+  };
+  sectionLength = objChanges.section.length
+  objChanges.section[sectionLength] = {id:parseInt(id), section:newSection};
+  // changeSection.push("id":id, section:newSection);
+  console.log(objChanges.section[sectionLength]);
+  document.getElementById('btnEdit' + type + id).style.display = "inline";
+  document.getElementById('btnOK' + type + id).style.display = "none";
+  document.getElementById(type + id).classList.remove("inputEdit")
+};
+
+function clickSubOKBtn(id) {
+
+}
 
 function clickSaveChanges() {
 
@@ -112,11 +134,7 @@ function clickCancelChanges() {
   location.reload(true);
 };
 
-function clickNavBarBtn() {
-  let btns = document.querySelectorAll('.btnEdit');
-  btns.forEach(btn => btn.style.display = "inline");
-  document.getElementById('saveFooter').style.display = "inline";
-};
+
 
 // Scroll to anchor ID using scrollTO event
 
