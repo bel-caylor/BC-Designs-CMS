@@ -14,34 +14,29 @@
     margin-right: auto;
 }
 
-section:nth-of-type(even) .landing__container .h2{
-    // margin-right: 0;
-    // margin-left: auto;
-    // text-align: right;
-}
-
-// section:nth-of-type(odd) .gallery_container {
-//     margin-right: 0;
-//     margin-left: auto;
-//     text-align: right;
-// }
-
 .project_container:last-of-type{
   border-bottom: 0px;
 }
 
 .project_container {
   display: grid;
-  padding: 1rem;
+  padding: 1rem 0 1rem 0;
   border-bottom: 2px ridge $color2;
   text-align: left;
   vertical-align: bottom;
-
-  // font
+  .btn {
+    text-align: right;
+  }
+  .link_hover img:hover {
+    transform: rotate(-2deg);
+  }
   .project_photo {
     display: grid;
     grid-area: photo;
-    // padding-top: 1vh;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 1rem;
+    padding-left: 0;
   }
   .project_detail {
     display: block;
@@ -49,34 +44,22 @@ section:nth-of-type(even) .landing__container .h2{
     margin-bottom: auto;
     grid-area: detail;
   }
-
   p {
     font-size: 0.7rem;
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
-    // padding-left: 1rem;
   }
-
   .no_background {
       background-color: transparent;
       width: 70%;
       padding-left: 30%;
   }
-
-  // img {
-  //   width: 30vw;
-  //   padding: 5px;
-  //   margin-left: -20px;
-  //   margin-right: 30px;
-  //   background-color: white;
-  // }
 }
 
-.project_container {
-  .link_hover img:hover {
-    transform: rotate(-2deg);
+.project_container:nth-of-type(even) {
+  .btn {
+    text-align: right;
   }
-}.project_container:nth-of-type(even) {
   h3, h4, h5{
     text-align: right;
   }
@@ -86,9 +69,11 @@ section:nth-of-type(even) .landing__container .h2{
   .link_hover img:hover {
     transform: rotate(2deg);
   }
+  .project_photo {
+    padding-left: 1rem;
+    padding-right: 0;
+  }
 }
-
-
 
 @media only screen and (max-width: 450px){
   .project_photo {
@@ -98,8 +83,8 @@ section:nth-of-type(even) .landing__container .h2{
     margin-bottom: 1vh;
     img {
       width: 70vw;
-      padding: 5px;
-      background-color: white;
+      // padding: 5px;
+      // background-color: white;
     }
   }
 
@@ -116,10 +101,7 @@ section:nth-of-type(even) .landing__container .h2{
 @media only screen and (min-width: 451px) {
   .project_container img {
       width: 30vw;
-      padding: 5px;
-      margin-left: -20px;
-      margin-right: 30px;
-      background-color: white;
+      // padding: 5px;
   }
 
   .project_container:nth-of-type(odd) {
@@ -133,8 +115,6 @@ section:nth-of-type(even) .landing__container .h2{
     grid-template-areas:
       "detail photo";
     img {
-      margin-left: 30px;
-      margin-right: -20px;
       :hover {
         transform: rotate(2deg);
       }
