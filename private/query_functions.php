@@ -4,10 +4,17 @@
     global $db;
     $sql = "SELECT * FROM " . $table . " ";
     if ($filter != 'NONE') {
-      $sql .= "WHERE " . $filter . " = " . $filterValue . " "; 
+      $sql .= "WHERE " . $filter . " = " . $filterValue . " ";
     };
     $sql .= "ORDER BY " . $orderBy . " " . $ord . " ";
-    return mysqli_query($db, $sql);
+    $data = mysqli_query($db, $sql);
+    dbConfirmDataReturned($data);
+    return $data;
+  }
+
+  function updateValue($table, $id, $col, $value) {
+    global $db;
+    $sql = "UPDATE ";
   }
 
  ?>
