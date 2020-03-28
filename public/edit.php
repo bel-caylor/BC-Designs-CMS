@@ -68,6 +68,7 @@
 
   // Loop Through SubSections
           $subSections = query_db("sub_sections", "id", "ASC", "section_id", $section['id']);
+          $loop = "even";
           while($subSection = mysqli_fetch_assoc($subSections)) {
 
             if (substr($subSection['photo'],0,4) != "GRID") {
@@ -88,26 +89,38 @@
                   }
               //Detail
                   $main .= '<div class="project_detail">';
-                  //Edit Button
-                    $sectionNum = $subSection['section_id'] . '.' . $subSection['id'];
-                    $main .= '<div><button onclick="clickEditBtn(' . $sectionNum . ', `Sub`)">';
-                    $main .= '<img id="btnEditSec' . $sectionNum . '" class="btnEdit btn" src="images\button_edit.png" alt="Edit" hspace="2"></button>';
-                  //OK Button
-                    $main .= '<button onclick="clickSubOKBtn(' . $sectionNum . ')">';
-                    $main .= '<img id="btnOKSec' . $sectionNum . '" class="btnOK btn" src="images\button_OK.png" alt="OK" hspace="2"></button></div>';
-                    $main .= '<input type="text" id="h3Sub' . $sectionNum . '" value="' . $subSection['heading_1'] . '" class="h3" maxlength="40" readonly>';
-                            // <h3 class="inline" id="h3Sub' . $sectionNum . '">' . $subSection['heading_1'] . '</h3>';
+
+                  //Put the Edit/OK buttons on opposite sides.
+                  if ($loop == "odd") {
+                    //Edit Button
+                      $sectionNum = $subSection['section_id'] . '.' . $subSection['id'];
+                      $main .= '<div class="block"><button onclick="clickEditBtn(' . $sectionNum . ', `Sub`)">';
+                      $main .= '<img id="btnEditSec' . $sectionNum . '" class="btnEdit btn" src="images\button_edit.png" alt="Edit" hspace="2"></button>';
+                    //OK Button
+                      $main .= '<button onclick="clickSubOKBtn(' . $sectionNum . ')">';
+                      $main .= '<img id="btnOKSec' . $sectionNum . '" class="btnOK btn" src="images\button_OK.png" alt="OK" hspace="2"></button>';
+                      $main .= '<input type="text" id="h3Sub' . $sectionNum . '" value="' . $subSection['heading_1'] . '" class="h3" maxlength="30" readonly></div>';
+                      $loop = "even";
+                  }else {
+                    //Edit Button
+                      $sectionNum = $subSection['section_id'] . '.' . $subSection['id'];
+                      $main .= '<div class="block"><input type="text" id="h3Sub' . $sectionNum . '" value="' . $subSection['heading_1'] . '" class="h3" maxlength="30" readonly>';
+                      $main .= '<button onclick="clickEditBtn(' . $sectionNum . ', `Sub`)">';
+                      $main .= '<img id="btnEditSec' . $sectionNum . '" class="btnEdit btn" src="images\button_edit.png" alt="Edit" hspace="2"></button>';
+                    //OK Button
+                      $main .= '<button onclick="clickSubOKBtn(' . $sectionNum . ')">';
+                      $main .= '<img id="btnOKSec' . $sectionNum . '" class="btnOK btn" src="images\button_OK.png" alt="OK" hspace="2"></button></div>';
+                      $loop = "odd";
+                  }
                   if ($subSection['heading_2'] != NULL) {
-                    $main .= '<input type="text" id="h4Sub' . $sectionNum . '" value="' . $subSection['heading_2'] . '" class="h4" maxlength="40" readonly>';
-                    // $main .= '<h4 id="h4Sub' . $sectionNum . '">' . $subSection['heading_2'] . '</h4>';
+                    $main .= '<input type="text" id="h4Sub' . $sectionNum . '" value="' . $subSection['heading_2'] . '" class="h4 block" maxlength="40" readonly>';
                   }
                   if ($subSection['heading_3'] != NULL) {
-                    $main .= '<input type="text" id="h5Sub' . $sectionNum . '" value="' . $subSection['heading_3'] . '" class="h5" maxlength="40" readonly>';
-                    // $main .= '<h5 id="h5Sub' . $sectionNum . '">' . $subSection['heading_3'] . '</h5>';
+                    $main .= '<input type="text" id="h5Sub' . $sectionNum . '" value="' . $subSection['heading_3'] . '" class="h5 block" maxlength="40" readonly>';
                   }
               //Article
-                  $main .= get_article(SHARED_PATH . '/articles/' . $section['section'] . $subSection['article']);
-                  $main .= '</div>';  //End Detail
+                  $main .= '<div class="article">' . get_article(SHARED_PATH . '/articles/' . $section['section'] . $subSection['article']);
+                  $main .= '</div></div>';  //End Detail
                 $main .= '</div>';  //project container
               }else {
           //Photo GRID Layout
